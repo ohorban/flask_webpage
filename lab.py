@@ -355,4 +355,4 @@ def generate_comment_5():
 
 #populate()
 
-app.run(host= '0.0.0.0')
+app.run()
