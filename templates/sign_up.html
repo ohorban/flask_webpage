@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>WEBPAGE test run: sign up</title>
+{% endblock %}
+
+
+{% block content %}
+<h1>Sign Up</h1>
+<form action=/sign_up method=POST>
+    <table>
+    <tr><td>username</td><td><input class="textfield" type=text name=username></td></tr>
+    <tr><td>password</td><td><input class="textfield" type=password name=password1></td></tr>
+    <tr><td>repeat password</td><td><input class="textfield" type=password name=password2></td></tr>
+    </table>
+    <input type=submit value='sign up'>
+</form>
+{% if successful %}
+Thank you for signing up. Please proceed to log in
+{% endif %}
+
+{% if wrongPass %}
+ERROR: Passwords didn't match. Please try again
+{% endif %}
+
+{% if taken %}
+Account with username '{{username}}' already exists. Please try a different username ;)
+{% endif %}
+
+
+{% endblock %}

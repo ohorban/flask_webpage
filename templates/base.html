@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link rel = "stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+        {% block title %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="header">
+            <a class="active" href= "/home">Home</a>
+            <div class="header-right">
+                {% if username and password %}
+                <a href= "/search_message">Search</a>
+                <a href= "/create_message">Create a message</a>
+                <a href= "/user">Your account</a>
+                <a href= "/logout">Log Out</a>
+                {% else %}
+                <a href= "/sign_up">Sign Up</a>
+                <a href= "/login">Log In</a>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+        {% block content %}
+        {% endblock %}
+        </div>
+    </body>
+</html>
