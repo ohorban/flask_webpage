@@ -42,6 +42,7 @@
 
 The website was populated with 20 accounts that posted 20 posts each. I used my propaganda generator from previous assignments to do that.
 I connected my Flask app to Python Anywhere, so you can visit [The Website](http://ohorban.pythonanywhere.com/home)
-The python file that initializes the database and the database files were not included in this repository
+The python file that initializes the database and the database files were not included in this repository.
+I have developed this webpage to be safe against some HTML injection attacks and SQL injection attacks, but there is still a lot of room for improvmnet!
 
 ### Score: 35/25
