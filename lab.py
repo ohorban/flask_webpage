@@ -1,6 +1,6 @@
 import sqlite3, json, random
 from flask import Flask, render_template, send_from_directory, request, make_response, redirect
-
+DATABASE = 'database.db'
 app = Flask(__name__)
 
 @app.route('/')
@@ -10,7 +10,7 @@ def root():
 @app.route('/home', methods=['get', 'post'])
 def home():
 
-    con = sqlite3.connect('database.db')
+    con = sqlite3.connect(DATABASE)
     cur = con.cursor()
     cur.execute('''
         SELECT username, password from users where username=? and password=? ;
@@ -43,7 +43,7 @@ def home():
 
 @app.route('/home.json')
 def home_json():
-    con = sqlite3.connect('database.db')
+    con = sqlite3.connect(DATABASE)
     cur = con.cursor()
     cur.execute('''
         SELECT sender_id, message, created_at, id from messages;
@@ -61,7 +61,7 @@ def home_json():
 def login():
 
     if request.form.get('username'):
-        con = sqlite3.connect('database.db')
+        con = sqlite3.connect(DATABASE)
         cur = con.cursor()
         cur.execute('''
             SELECT username, password from users where username=? and password=? ;
@@ -94,7 +94,7 @@ def logout():
 def create_message():
     if(request.cookies.get('username') and request.cookies.get('password')):
         if request.form.get('newMessage'):
-            con = sqlite3.connect('database.db')
+            con = sqlite3.connect(DATABASE)
             cur = con.cursor()
             cur.execute('''
                 INSERT INTO messages (sender_id, message) values (?, ?);
@@ -111,7 +111,7 @@ def sign_up():
     try:
         if request.form.get('username'):
             if request.form.get('password1') == request.form.get('password2'):
-                con = sqlite3.connect('database.db')
+                con = sqlite3.connect(DATABASE)
                 cur = con.cursor()
                 cur.execute('''
                     INSERT INTO users (username, password) values (?, ?);
@@ -130,7 +130,7 @@ def sign_up():
 @app.route('/user')
 def user():
     if(request.cookies.get('username') and request.cookies.get('password')):
-        con = sqlite3.connect('database.db')
+        con = sqlite3.connect(DATABASE)
         cur = con.cursor()
         cur.execute('''
             SELECT message, created_at, id from messages where sender_id=?;
@@ -148,7 +148,7 @@ def user():
 @app.route('/delete_message/<id>', methods=['GET'])
 def delete_message(id):
 
-    con = sqlite3.connect('database.db') 
+    con = sqlite3.connect(DATABASE) 
     cur = con.cursor()
     cur.execute('''
         SELECT sender_id from messages where id=?;
@@ -166,7 +166,7 @@ def delete_message(id):
 @app.route('/edit_message/<id>', methods=['POST', 'GET'])
 def edit_message(id):
     if request.form.get('newMessage'):
-        con = sqlite3.connect('database.db') 
+        con = sqlite3.connect(DATABASE) 
         cur = con.cursor()
         cur.execute('''
             SELECT sender_id, message from messages where id=?;
@@ -188,7 +188,7 @@ def edit_message(id):
 @app.route('/delete_account/<username>')
 def delete_account(username):
     if request.cookies.get('username') == username:
-        con = sqlite3.connect('database.db') 
+        con = sqlite3.connect(DATABASE) 
         cur = con.cursor()
         cur.execute('''
             DELETE from users where username=?;
@@ -203,7 +203,7 @@ def delete_account(username):
 def change_password(username):
     if request.form.get('oldPassword'):
         if request.cookies.get('username') == username:
-            con = sqlite3.connect('database.db') 
+            con = sqlite3.connect(DATABASE) 
             cur = con.cursor()
             cur.execute('''
                 SELECT password from users where username=?;
@@ -232,7 +232,7 @@ def change_password(username):
 @app.route('/search_message', methods=['POST', 'GET'])
 def search_message():
     if request.form.get('search'):
-        con = sqlite3.connect('database.db') 
+        con = sqlite3.connect(DATABASE) 
         cur = con.cursor()
         cur.execute('''
             SELECT sender_id, message, created_at, id from messages;
@@ -354,5 +354,5 @@ def generate_comment_5():
     return text
 
 #populate()
-
-app.run()
+if __name__ == '__main__':
+    app.run()
