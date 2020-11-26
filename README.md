@@ -10,6 +10,7 @@
 1. Log Out
     1. Logs a user out
     1. Only visible if user is logged in
+1. Sign Up
     1. Presesnts a from to a user to enter their username, password and repeated password
     1. If the account already exists, an appropriate ERROR message will appear
     1. If 2 password don't match, an appropriate ERROR message will appear
