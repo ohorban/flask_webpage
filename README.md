@@ -1,5 +1,5 @@
 # HW5: Flask Webpage (Twitter clone)
- #### For this assignment  I've used Python (flask), SQL, CSS, HTML and Jinja2 to create a WEBPAGE that acts as a social network very similar to Twitter. Users can create accounts and post messages, which will be seen by everyone.<br />
+ #### For this project I've used Python (flask), SQL, CSS, HTML and Jinja2 to create a WEBPAGE that acts as a social network very similar to Twitter. Users can create accounts and post messages, which will be seen by everyone.<br />
 
 ## [Visit The Website](http://ohorban.pythonanywhere.com/home)
  ### Functionality:
@@ -44,5 +44,3 @@ The website was populated with 20 accounts that posted 20 posts each. I used my 
 I connected my Flask app to Python Anywhere, so you can visit [The Website](http://ohorban.pythonanywhere.com/home)
 The python file that initializes the database and the database files were not included in this repository.
 I have developed this webpage to be safe against some HTML injection attacks and SQL injection attacks, but there is still a lot of room for improvmnet!
-
-### Score: 35/25
